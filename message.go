@@ -823,3 +823,11 @@ func (m *Message) Bot() *Bot {
 func (m *Message) Owner() *Self {
 	return m.Bot().self
 }
+
+func (m *Message) WithSufReplay(content, suf string) (*SentMessage, error) {
+	return m.ReplyText(content + suf)
+}
+
+func (m *Message) DefaultSufReply(content string) (*SentMessage, error) {
+	return m.WithSufReplay(content, "[此条消息为WanChat自动回复]")
+}
